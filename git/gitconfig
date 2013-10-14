@@ -1,11 +1,15 @@
 [include]
 	path = .gitconfig.local
+[user]
+	name = Sharoon Thomas
+	email = sharoon.thomas@openlabs.co.in
 [core]
 	excludesfile = /Users/mitsuhiko/.gitignore
 	autocrlf = input
 	precomposeunicode = true
 	editor = vim
 	#pager = delta --dark --plus-color="#012800" --minus-color="#340001"
+	editor = /usr/bin/vim
 [color]
 	ui = auto
 [color "branch"]
@@ -80,7 +84,7 @@
 [instaweb]
 	httpd=webrick
 [push]
-	default=current
+	default=matching
 [diff]
 	algorithm = patience
 [filter "lfs"]
