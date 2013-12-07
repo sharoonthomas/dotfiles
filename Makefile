@@ -51,7 +51,6 @@ endif
 install-keybindings:
 	rm -f ~/Library/KeyBindings/DefaultKeyBinding.dict
 	mkdir -p ~/Library/KeyBindings
-	cp `pwd`/osx/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
 install-vscode:
 	mkdir -p ~/Library/Application Support/Code/User
@@ -59,3 +58,7 @@ install-vscode:
 	rm -f ~/Library/Application\ Support/Code/User/keybindings.json
 	ln -s `pwd`/vscode/settings.json ~/Library/Application\ Support/Code/User
 	ln -s `pwd`/vscode/keybindings.json ~/Library/Application\ Support/Code/User
+	ln -s `pwd`/osx/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
+
+install-slate-config:
+	ln -s `pwd`/slate/config ~/.slate
