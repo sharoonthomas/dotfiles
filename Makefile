@@ -42,4 +42,7 @@ endif
 install-keybindings:
 	rm -f ~/Library/KeyBindings/DefaultKeyBinding.dict
 	mkdir -p ~/Library/KeyBindings
-	cp `pwd`/osx/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
+	ln -s `pwd`/osx/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
+
+install-slate-config:
+	ln -s `pwd`/slate/config ~/.slate
