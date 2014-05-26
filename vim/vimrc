@@ -464,6 +464,10 @@ autocmd FileType coffee setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 " -
 autocmd FileType d setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
 
+" Dockerfile
+autocmd BufRead,BufNewFile Dockerfile* setf Dockerfile
+autocmd BufRead,BufNewFile *.dock setf Dockerfile
+
 " cmake support
 " -------------
 autocmd BufNewFile,BufRead CMakeLists.txt setlocal ft=cmake
