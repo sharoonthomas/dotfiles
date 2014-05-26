@@ -103,3 +103,6 @@
 [submodule "vim/bundle/vim-jsx"]
 	path = vim/bundle/vim-jsx
 	url = https://github.com/mxw/vim-jsx
+[submodule "vim/bundle/docker"]
+	path = vim/bundle/docker
+	url = https://github.com/ekalinin/Dockerfile.vim.git
