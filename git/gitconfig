@@ -80,3 +80,6 @@
 	default=matching
 [diff]
 	algorithm = patience
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
