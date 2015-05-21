@@ -1,0 +1,167 @@
+#account settings
+set from="sharoon.thomas@openlabs.co.in"
+set realname = "Sharoon Thomas"
+set imap_user = "sharoon.thomas@openlabs.co.in"
+set my_pass = `security find-internet-password -g -a sharoon.thomas@openlabs.co.in -s imap.gmail.com 2>&1\
+| perl -e 'if (<STDIN> =~ m/password: "(.*)"$/ ) { print $1; }'`
+set imap_pass = $my_pass
+set smtp_url = "smtp://sharoon.thomas@openlabs.co.in@smtp.gmail.com:587"
+set smtp_pass = $my_pass
+set smtp_authenticators = 'gssapi:login'
+ 
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+set record = "+[Gmail]/Sent Mail"
+set header_cache =~/.mutt/cache/headers
+set message_cachedir =~/.mutt/cache/bodies
+set certificate_file =~/.mutt/certificates
+ 
+set move = no  #Stop asking to "move read messages to mbox"!
+set imap_keepalive = 900
+ 
+# Header related stuff
+# ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+hdr_order Date From To Cc
+ 
+ignore *
+unignore from: date subject to cc
+unignore x-mailing-list: posted-to:
+unignore x-mailer:
+ 
+# Sorting, Markers etc.
+# Index View Options ---------------------------------
+set date_format = "%m/%d"
+set index_format = "[%Z]  %D  %-20.20F  %s"
+set sort = threads                         # like gmail
+set sort_aux = reverse-last-date-received  # like gmail
+set uncollapse_jump                        # don't collapse on an unread message
+set sort_re                                # thread based on regex
+set reply_regexp = "^(([Rr][Ee]?(\[[0-9]+\])?: *)?(\[[^]]+\] *)?)*"
+
+# Index Key Bindings ---------------------------------
+bind index gg       first-entry
+bind index G        last-entry
+
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+bind index <space>  collapse-thread
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+ 
+# Set which Editor to use for composing Emails.
+set editor= '/usr/bin/vim'
+ 
+# set up the sidebar
+# Sidebar Patch --------------------------------------
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 30
+color sidebar_new color221 color233
+ 
+# which mailboxes to list in the sidebar,
+# you can add your Labels in Gmail to the Sidebar.
+mailboxes =All Mail =INBOX =Drafts =Sent Mail  =Trash
+ 
+# color of folders with new mail
+color sidebar_new yellow default
+ 
+#Sidebar Navigation
+bind index CP sidebar-prev
+bind index CN sidebar-next
+bind index CO sidebar-open
+bind pager CP sidebar-prev
+bind pager CN sidebar-next
+bind pager CO sidebar-open
+ 
+# b toggles sidebar visibility
+macro index b 'toggle sidebar_visible'
+macro pager b 'toggle sidebar_visible'
+ 
+# Remap bounce-message function to "B"
+bind index B bounce-message
+
+# the rest of this is from http://www.igd.fhg.de/~zach/mutt/muttrc
+# now http://web.informatik.uni-bonn.de/II/ag-klein/people/zach/mutt/
+#
+#   Key bindings
+#   Make mutt's bindings as close to lynx', slrn's, and vim's as possible
+#
+
+# move 1/2 page up/down like in vi
+bind generic \Cu    half-up
+bind generic \Cd    half-down
+bind pager   \Cu    half-up
+bind pager   \Cd    half-down
+bind generic   b    previous-page
+bind generic \Cb    previous-page
+bind generic \Cf    next-page
+bind generic   1G   first-entry
+bind generic   1g   first-entry
+bind generic <Home> first-entry
+bind generic \Ca    first-entry
+bind generic   G    last-entry
+bind generic <End>  last-entry
+bind generic \Ce    last-entry
+
+bind pager   \eD    delete-thread
+bind pager   \eU    undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind pager \Ca      top
+bind pager <Home>   top
+bind pager  1G      top
+bind pager  1g      top
+bind pager \Ce      bottom
+bind pager <End>    bottom
+bind pager   G      bottom
+bind pager   q      exit
+bind pager <Left>   exit
+bind pager   i      noop
+bind pager   B      bounce-message
+bind pager   b      previous-page
+bind pager \Cb      previous-page
+bind pager \Cf      next-page
+bind pager <Up>     previous-line
+bind pager <Down>   next-line
+bind pager <Insert> previous-entry
+bind pager <Delete> next-entry
+
+bind index \eD     delete-thread
+bind index \eU     undelete-thread
+# ^U and ^D were bound otherwise, so bind it now again to something else
+bind index   B     bounce-message
+bind index \ef     forget-passphrase
+bind index \Cb     previous-page
+bind index \Cf     next-page
+bind index <Up>    previous-entry
+bind index <Down>  next-entry
+bind index <Right> display-message
+bind index <Home>  first-entry
+bind index <End>   last-entry
+bind index   1G    first-entry
+bind index   1g    first-entry
+bind index \Ca     first-entry
+bind index   G     last-entry
+bind index \Ce     last-entry
+
+bind alias <Tab> next-entry
+
+bind browser <Right> select-entry
+ 
+# Make mutt use gpg
+source "~/.mutt/gpg.rc"
+
+# Colors please
+source "~/.mutt/solarized/mutt-colors-solarized-dark-16.muttrc"
