@@ -46,3 +46,13 @@ install-keybindings:
 
 install-slate-config:
 	ln -s `pwd`/slate/config ~/.slate
+
+install-mutt:
+	mkdir -p ~/.mutt/cache
+	mkdir -p ~/.mutt/certificates
+	rm -f ~/.muttrc
+	ln -s `pwd`/mutt/muttrc ~/.muttrc
+	rm -f ~/.mutt/gpg.rc
+	ln -s `pwd`/mutt/gpg.rc ~/.mutt/gpg.rc
+	rm -f ~/.mutt/solarized
+	ln -s `pwd`/mutt/mutt-colors-solarized ~/.mutt/solarized
