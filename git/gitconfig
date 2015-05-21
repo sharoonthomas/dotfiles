@@ -3,6 +3,7 @@
 [user]
 	name = Sharoon Thomas
 	email = sharoon.thomas@openlabs.co.in
+	signingkey = F9BB6DF8
 [core]
 	excludesfile = /Users/mitsuhiko/.gitignore
 	autocrlf = input
