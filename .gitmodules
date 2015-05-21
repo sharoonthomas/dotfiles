@@ -106,3 +106,12 @@
 [submodule "vim/bundle/docker"]
 	path = vim/bundle/docker
 	url = https://github.com/ekalinin/Dockerfile.vim.git
+[submodule "mutt/mutt-colors-solarized"]
+	path = mutt/mutt-colors-solarized
+	url = git@github.com:altercation/mutt-colors-solarized.git
+[submodule "vim/bundle/systemd"]
+	path = vim/bundle/systemd
+	url = git@github.com:Matt-Deacalion/vim-systemd-syntax.git
+[submodule "vim/bundle/apiblueprint.vim"]
+	path = vim/bundle/apiblueprint.vim
+	url = git@github.com:kylef/apiblueprint.vim.git
