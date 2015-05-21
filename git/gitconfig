@@ -42,6 +42,7 @@
 	branches = branch -vv
 	getbranch = "!x() { git co origin/$1 -b $1; }; x"
 	fixbranch = "!x() { b=`git symbolic-ref -q --short HEAD` && git rebase --onto $b master $1 && git diff --stat $b && git checkout $b; }; x"
+	versions = tag --sort=v:refname
 	autotrack = "!x() { b=`git symbolic-ref -q --short HEAD` && git branch -u \"origin/$b\" || echo \"error: not a branch\"; }; x"
 	slog = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
 	glog = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
@@ -82,13 +83,14 @@
 	main-branch = "!f() { gitHeadsDir=\"$(git rev-parse --show-toplevel)/.git/refs/heads\"; if [ -f \"$gitHeadsDir/main\" ]; then echo 'main'; elif [ -f \"$gitHeadsDir/master\" ]; then echo 'master'; else git remote show origin | grep 'HEAD branch' | cut -d' ' -f5; fi; }; f"
 	main-alias = "!f() { if (git show-ref --verify -q refs/heads/main && !git show-ref --verify -q refs/heads/master); then (git symbolic-ref refs/heads/master refs/heads/main); else (git symbolic-ref refs/heads/main refs/heads/master); fi }; f"
 	rebase-branch = "!f() { git rebase -i $(git merge-base $(git main-branch) HEAD); }; f"
+	unstage = reset HEAD --
+	pr = pull-request
 [instaweb]
 	httpd=webrick
 [push]
 	default=matching
 [diff]
 	algorithm = patience
-<<<<<<< HEAD
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
