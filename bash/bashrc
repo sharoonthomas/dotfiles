@@ -111,6 +111,47 @@ fi
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-export VOLTA_HOME="/Users/mitsuhiko/.volta"
-grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/Users/mitsuhiko/.local/share/sentry-devenv/bin:$PATH"
+# hack to get ppc out of that thing
+export ARCHFLAGS="-arch i386 -arch x86_64"
+
+if [ x`which ack-grep` != x ]; then
+  alias ack=ack-grep
+fi
+
+# For lazy people like me
+from() { expect -c "spawn -noecho python
+expect \">>> \"
+send \"from $*\r\"
+interact +++ return"; }
+import() { expect -c "spawn -noecho python
+expect \">>> \"
+send \"import $*\r\"
+interact +++ return"; }
+
+# Useful command for stripping whitespace
+remove_trailing_whitespace() {
+  find . -name $* -exec sed -i '' -e's/[[:space:]]*$//' {} \;
+}
+
+# Meh OS X
+alias fixopenwith='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user'
+
+# Python
+export PYTHONSTARTUP=~/.pythonstartup.py
+
+# Extra stuff
+if [ -f ~/.profile_local ]; then
+  source ~/.profile_local
+fi
+
+# Perforce shenanigans
+export P4CONFIG=.p4rc
+
+# Make sure window sizes update correctly.
+shopt -s checkwinsize
+
+function rustup {
+  curl -s https://static.rust-lang.org/rustup.sh | sudo sh
+}
+
+export GEM_HOME=~/.gem
