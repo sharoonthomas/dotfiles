@@ -4,12 +4,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/ack"]
-	path = vim/bundle/ack
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/bundle/rust"]
-	path = vim/bundle/rust
-	url = https://github.com/wting/rust.vim.git
 [submodule "vim/bundle/commentary"]
 	path = vim/bundle/commentary
 	url = https://github.com/tpope/vim-commentary
@@ -19,12 +13,6 @@
 [submodule "vim/bundle/jinja"]
 	path = vim/bundle/jinja
 	url = https://github.com/mitsuhiko/vim-jinja
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = https://github.com/scrooloose/syntastic
-[submodule "vim/bundle/fruity-vim-colorscheme"]
-	path = vim/bundle/fruity-vim-colorscheme
-	url = https://github.com/mitsuhiko/fruity-vim-colorscheme
 [submodule "vim/bundle/rst"]
 	path = vim/bundle/rst
 	url = https://github.com/mitsuhiko/vim-rst
@@ -64,9 +52,6 @@
 [submodule "vim/bundle/cython"]
 	path = vim/bundle/cython
 	url = https://github.com/tshirtman/vim-cython
-[submodule "vim/bundle/go"]
-	path = vim/bundle/go
-	url = https://github.com/fsouza/go.vim
 [submodule "vim/bundle/sparkup"]
 	path = vim/bundle/sparkup
 	url = https://github.com/mitsuhiko/vim-sparkup
@@ -85,9 +70,6 @@
 [submodule "vim/bundle/typescript"]
 	path = vim/bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "vim/bundle/vim/bundle/json"]
-	path = vim/bundle/vim/bundle/json
-	url = https://github.com/mitsuhiko/vim-json
 [submodule "vim/bundle/less"]
 	path = vim/bundle/less
 	url = https://github.com/groenewege/vim-less
@@ -115,3 +97,15 @@
 [submodule "vim/bundle/apiblueprint.vim"]
 	path = vim/bundle/apiblueprint.vim
 	url = git@github.com:kylef/apiblueprint.vim.git
+[submodule "vim/bundle/php"]
+	path = vim/bundle/php
+	url = https://github.com/StanAngeloff/php.vim
+[submodule "vim/bundle/racer"]
+	path = vim/bundle/racer
+	url = https://github.com/racer-rust/vim-racer
+[submodule "vim/bundle/groovy"]
+	path = vim/bundle/groovy
+	url = https://github.com/modille/groovy.vim
+[submodule "vim/bundle/ripgrep"]
+	path = vim/bundle/ripgrep
+	url = https://github.com/jremmen/vim-ripgrep

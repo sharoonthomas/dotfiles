@@ -31,8 +31,13 @@ syntax on
 if has("gui_running")
   colorscheme fruity
   if has("mac")
-    set guifont=Powerline\ Consolas:h13
-    set fuoptions=maxvert,maxhorz
+    set linespace=3
+    "set guifont=Powerline\ Consolas:h13
+    set guifont=Operator\ Mono\ Book\ for\ Powerline:h13
+    if has("gui_macvim")
+      set fuoptions=maxvert,maxhorz
+      set guioptions=
+    endif
     " does not work properly on os x
     " au GUIEnter * set fullscreen
   else
@@ -47,6 +52,12 @@ if has("gui_running")
   "let g:airline_theme='solarized'
   let g:airline_theme='tomorrow'
   let g:airline_powerline_fonts=1
+  "let g:airline_right_alt_sep = ''
+  "let g:airline_right_sep = ''
+  "let g:airline_left_alt_sep= ''
+  "let g:airline_left_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_left_sep = ''
 else
   let g:airline_powerline_fonts=0
 endif
@@ -167,10 +178,6 @@ nnoremap <leader>ev <C-w><C-s><C-l>:e $MYVIMRC<CR>
 
 " Remove trailing whitespace on <leader>S
 nnoremap <leader>S :%s/\s\+$//<cr>:let @/=''<CR>
-
-" Ack on <leader>a
-nnoremap <leader>a :Ack 
-nnoremap <leader>A :AckFromSearch<CR>
 
 " <leader>v selects the just pasted text
 nnoremap <leader>v V`]
@@ -328,7 +335,8 @@ let python_highlight_exceptions=0
 let python_highlight_builtins=0
 let python_slow_sync=1
 
-let g:syntastic_python_checkers=['flake8', 'python']
+"let g:syntastic_python_checkers=['flake8', 'python']
+let g:syntastic_python_checkers=[]
 
 " Don't warn on
 "   E121 continuation line indentation is not a multiple of four
@@ -346,15 +354,20 @@ let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,
 " ruby support
 " ------------
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+autocmd BufNewFile,BufRead Podfile setlocal ft=ruby
 
 " go support
 " ----------
 autocmd BufNewFile,BufRead *.go setlocal ft=go
-autocmd FileType go setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
+autocmd FileType go setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " php support
 " -----------
 autocmd FileType php setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
+
+" shell support
+" -----------
+autocmd FileType sh setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 
 " template language support (SGML / XML too)
 " ------------------------------------------
@@ -386,6 +399,10 @@ autocmd FileType css noremap <buffer> <leader>r :call CSSBeautify()<cr>
 " Less
 " ----
 autocmd FileType less setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
+
+" Sass
+" ----
+autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=8 softtabstop=2
 
 " Java
 " ----
@@ -469,6 +486,10 @@ autocmd BufNewFile,BufRead *.sls setlocal ft=yaml
 " -----------
 autocmd FileType lua setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
+" Groovy
+" ------
+autocmd FileType groovy setlocal shiftwidth=4 tabstop=8 softtabstop=4 expandtab
+
 " rust
 " ----
 autocmd FileType rust setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4
@@ -488,3 +509,12 @@ autocmd BufWinEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of
 autocmd InsertEnter * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd InsertLeave * match TechWordsToAvoid /\cobviously\|basically\|simply\|of\scourse\|clearly\|just\|everyone\sknows\|however,\|so,\|easy/
 autocmd BufWinLeave * call clearmatches()
+
+" fzf
+set rtp+=/usr/local/opt/fzf
+let $FZF_DEFAULT_COMMAND="rg --files || find ."
+noremap <leader>p :FZF<CR>
+noremap  :FZF<CR>
+
+" Rg on <leader>a
+nnoremap <leader>a :Rg<CR>

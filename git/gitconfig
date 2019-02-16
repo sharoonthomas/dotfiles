@@ -5,9 +5,10 @@
 	email = sharoon.thomas@fulfil.io
 	signingkey = F9BB6DF8
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/mitsuhiko/.gitignore
 	autocrlf = input
-	editor = /usr/bin/vim
+	precomposeunicode = true
+	editor = /usr/local/bin/vim
 [color]
 	ui = auto
 [color "branch"]
@@ -41,9 +42,9 @@
 	versions = tag --sort=v:refname
 	autotrack = "!x() { b=`git symbolic-ref -q --short HEAD` && git branch -u \"origin/$b\" || echo \"error: not a branch\"; }; x"
 	slog = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
-	glog = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
+	glog = log --graph --pretty=format:"%C(auto,yellow)%h%C(auto)%d\\ %C(auto,reset)%s\\ \\ [%C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)]"
 	gflog = log -p --cc --graph --decorate
-	wtf = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%cn%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
+	wtf = log --pretty=format:"%C(auto,yellow)%h%C(auto)%d%C(auto,reset)\\ by\\ %C(auto,blue)%an%C(auto,reset),\\ %C(auto,cyan)%ar%C(auto,reset)%n\\ %s%n" --stat
 	unci = reset HEAD^
 	uncommit = reset HEAD^
 	ls = ls-files
@@ -64,6 +65,7 @@
 	authors = shortlog -sn
 	serve = daemon --verbose --export-all --base-path=.git --reuseaddr --strict-paths .git/
 	serveall = daemon --verbose --export-all --base-path=. --reuseaddr .
+	tip = rev-parse HEAD
 	addpr = "!f() { git fetch origin pull/$1/head:pr/$1; }; f"
 	addprx = "!f() { b=`git symbolic-ref -q --short HEAD` && \
 		echo \"Making branch for pull request #$1 [pr/$1]\" && \
@@ -78,6 +80,7 @@
 		}; f"
 	unstage = reset HEAD --
 	pr = pull-request
+	resetmodules = "!git submodule deinit -f . && rm -rf \"$(git rev-parse --git-dir)/modules\" && git submodule update --init"
 [instaweb]
 	httpd=webrick
 [push]
@@ -87,3 +90,13 @@
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
