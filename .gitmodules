@@ -109,3 +109,12 @@
 [submodule "vim/bundle/ripgrep"]
 	path = vim/bundle/ripgrep
 	url = https://github.com/jremmen/vim-ripgrep
+[submodule "vim/bundle/fruity-vim-colorscheme"]
+	path = vim/bundle/fruity-vim-colorscheme
+	url = git@github.com:mitsuhiko/fruity-vim-colorscheme.git
+[submodule "vim/bundle/syntatic"]
+	path = vim/bundle/syntatic
+	url = git@github.com:vim-syntastic/syntastic.git
+[submodule "vim/bundle/rust"]
+	path = vim/bundle/rust
+	url = git@github.com:rust-lang/rust.vim.git
