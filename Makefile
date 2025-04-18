@@ -28,6 +28,7 @@ install-psql:
 install-git:
 	rm -f ~/.gitconfig
 	ln -s `pwd`/git/gitconfig ~/.gitconfig
+	ln -s `pwd`/git/gitignore ~/.gitignore
 
 install-virtualenvwrapper:
 	mkdir -p ~/.virtualenvs

@@ -5,12 +5,11 @@
 	email = sharoon.thomas@fulfil.io
 	signingkey = F9BB6DF8
 [core]
-	excludesfile = /Users/mitsuhiko/.gitignore
+	excludesfile = /Users/sharoonthomas/.gitignore
 	autocrlf = input
 	precomposeunicode = true
-	editor = vim
+	editor = nvim
 	#pager = delta --dark --plus-color="#012800" --minus-color="#340001"
-	editor = /usr/bin/vim
 [color]
 	ui = auto
 [color "branch"]
